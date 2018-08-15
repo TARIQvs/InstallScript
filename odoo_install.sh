@@ -156,6 +156,8 @@ echo -e "* Creating server config file"
 sudo su root -c "printf '[options] \n; This is the password that allows database operations:\n' >> /etc/${OE_CONFIG}.conf"
 sudo su root -c "printf 'admin_passwd = ${OE_SUPERADMIN}\n' >> /etc/${OE_CONFIG}.conf"
 sudo su root -c "printf 'db_host = ${DB_HOST} # This is the IP of the backend server\n' >> /etc/${OE_CONFIG}.conf"
+sudo su root -c "printf 'db_port = 5432\n' >> /etc/${OE_CONFIG}.conf"
+sudo su root -c "printf 'db_user = odoo11 # Default Postgres User \n' >> /etc/${OE_CONFIG}.conf"
 sudo su root -c "printf 'xmlrpc_port = ${OE_PORT}\n' >> /etc/${OE_CONFIG}.conf"
 sudo su root -c "printf 'logfile = /var/log/${OE_USER}/${OE_CONFIG}.log\n' >> /etc/${OE_CONFIG}.conf"
 if [ $IS_ENTERPRISE = "True" ]; then
