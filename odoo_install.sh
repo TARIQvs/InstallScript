@@ -19,6 +19,8 @@
 OE_USER="odoo"
 OE_HOME="/$OE_USER"
 read -p "Enter DB HOST: "  DB_HOST
+read -p "Enter DB User Name: " DB_USERNAME
+read -p -s "Enter DB Password: "DB_PASSWORD
 OE_HOME_EXT="/$OE_USER/${OE_USER}-server"
 #The default port where this Odoo instance will run under (provided you use the command -c in the terminal)
 #Set to true if you want to install it, false if you don't need it or have it already installed.
@@ -157,7 +159,8 @@ sudo su root -c "printf '[options] \n; This is the password that allows database
 sudo su root -c "printf 'admin_passwd = ${OE_SUPERADMIN}\n' >> /etc/${OE_CONFIG}.conf"
 sudo su root -c "printf 'db_host = ${DB_HOST} # This is the IP of the backend server\n' >> /etc/${OE_CONFIG}.conf"
 sudo su root -c "printf 'db_port = 5432\n' >> /etc/${OE_CONFIG}.conf"
-sudo su root -c "printf 'db_user = postgres # Default Postgres User \n' >> /etc/${OE_CONFIG}.conf"
+sudo su root -c "printf 'db_user = $(DB_USERNAME)\n' >> /etc/${OE_CONFIG}.conf"
+sudo su root -c "printf 'db_passwd = $(DB_PASSWORD)\n' >> /etc/${OE_CONFIG}.conf"
 sudo su root -c "printf 'xmlrpc_port = ${OE_PORT}\n' >> /etc/${OE_CONFIG}.conf"
 sudo su root -c "printf 'logfile = /var/log/${OE_USER}/${OE_CONFIG}.log\n' >> /etc/${OE_CONFIG}.conf"
 if [ $IS_ENTERPRISE = "True" ]; then
